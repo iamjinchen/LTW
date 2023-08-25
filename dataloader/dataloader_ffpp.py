@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 import random
+from dataloader.dataloader_dfdc import DFDCDetection
 import torch
 import torch.utils.data as data
 import pdb
@@ -12,6 +13,7 @@ from torchvision import transforms as torch_transforms
 import json
 import sys
 sys.path.append("./")
+
 class FFpp(data.Dataset):
     def __init__(self, split='train', frame_nums=5,
                  transform=None, target_transform=None,detect_name='mtcnn',compress = 'c40',type = 'Face2Face',pair = False,original_path="/media/sdc/datasets/faceforensics++/original_sequences/youtube",fake_path="/media/sdc/datasets/faceforensics++/manipulated_sequences"
@@ -57,6 +59,7 @@ class FFpp(data.Dataset):
         
     def __getitem__(self, index):
         img_path, target,folder = self.datas[index]
+        print("ffpp getitem called!")
         if self.pair == True:
             '''
             meta-split stragey
@@ -64,6 +67,8 @@ class FFpp(data.Dataset):
             if target == 1:
                 origin_index = img_path.split('/')[-2].split('_')[0]
                 frame_index = img_path.split('/')[-1].split('_')[-1]
+                #TODO: what is opposite and meta 
+                # training domain has N/2 domain sets and meta domain has the rest
                 opposite_path = f'{self.original_path}/{self.compress}/{self.detect_name}/'+origin_index+"/"+origin_index+"_"+frame_index
                 meta_path = img_path.replace(img_path.split('/')[-5],self.meta_type)
                 if not os.path.exists(opposite_path):
@@ -124,6 +129,7 @@ class FFpp(data.Dataset):
     def init(self):
         datas = []
         path_list = []
+        """either load all types pr specific type of forgery"""
         if self.type != 'all' and self.type!='real':
             Deepfakes_path = f'{self.fake_path}/{self.type}/{self.compress}/{self.detect_name}/'
             path_list.append(Deepfakes_path)
@@ -151,6 +157,7 @@ class FFpp(data.Dataset):
                 if len(face_paths) > self.frame_nums:
                     face_paths = np.array(sorted(face_paths, key=lambda x: int(x.split('/')[-1].split('.')[0])))
                     ind = np.linspace(0, len(face_paths) - 1, self.frame_nums, endpoint=True, dtype=np.int)
+                    #ind: evenly spaced array of indices
                     face_paths = face_paths[ind]
                 if label == 0:
                     self.num_real = self.num_real+len(face_paths)
@@ -187,38 +194,40 @@ def get_video_ids(spl, splits_path):
     return get_sets(read_json(os.path.join(splits_path, f'{spl}.json')))
 
 
-def read_train_test_val_dataset(
-        dataset_dir, name, target, splits_path, **dataset_kwargs
-):
-    for spl in ['train', 'val', 'test']:
-        import pdb; pdb.set_trace()
-        video_ids = get_video_ids(spl, splits_path)
-        video_paths = listdir_with_full_paths(dataset_dir)
-        videos = [x for x in video_paths if get_file_name(x) in video_ids]
-        dataset = ImagesDataset(videos, name, target, **dataset_kwargs)
-        yield dataset
+# def read_train_test_val_dataset(
+#         dataset_dir, name, target, splits_path, **dataset_kwargs
+# ):
+#     for spl in ['train', 'val', 'test']:
+#         import pdb; pdb.set_trace()
+#         video_ids = get_video_ids(spl, splits_path)
+#         video_paths = listdir_with_full_paths(dataset_dir)
+#         videos = [x for x in video_paths if get_file_name(x) in video_ids]
+#         dataset = ImagesDataset(videos, name, target, **dataset_kwargs)
+#         yield dataset
 
 
-def load_FaceForens(train_size=128, test_size=1, transform=None):
-    if transform == None:
-        from transforms import ResNet_default_data_transforms
-        transform = ResNet_default_data_transforms
+# def load_FaceForens(train_size=128, test_size=1, transform=None):
+#     if transform == None:
+#         from transforms import ResNet_default_data_transforms
+#         transform = ResNet_default_data_transforms
 
 
-    trans = transform['train']
-    train_dataset = DFDCDetection(train=True, frame_nums=5, transform=trans)
-    train_dataloader = data.DataLoader(train_dataset, batch_size=train_size, shuffle=True, num_workers=4)
+#     trans = transform['train']
+#     train_dataset = DFDCDetection(train=True, frame_nums=5, transform=trans)
+#     train_dataloader = data.DataLoader(train_dataset, batch_size=train_size, shuffle=True, num_workers=4)
 
-    trans = transform['test']
-    test_dataset = DFDCDetection(train=False, frame_nums=12, transform=trans)
-    test_dataloader = data.DataLoader(test_dataset, batch_size=test_size, shuffle=True, num_workers=4)
+#     trans = transform['test']
+#     test_dataset = DFDCDetection(train=False, frame_nums=12, transform=trans)
+#     test_dataloader = data.DataLoader(test_dataset, batch_size=test_size, shuffle=True, num_workers=4)
 
-    return train_dataloader, test_dataloader
+#     return train_dataloader, test_dataloader
 
 
 if __name__ == '__main__':
     from transform import xception_default_data_transforms as transform_data
-    
+    """
+    unit test 
+    """
     image_id = get_video_ids("test","/home/kesun/deepfake/ff++v2/splits/")
     real_id = []
     fake_id = []

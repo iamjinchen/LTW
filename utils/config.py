@@ -11,7 +11,7 @@ frame_nums = 10
 compress = 'c23'    #choose c23 or c40
 
 input_size = 224
-
+#TODO: mtcnn is used for?
 detect_name = "mtcnn"
 model_name = 'efficientnet-b4'
 type_list = ['Deepfakes','Face2Face','FaceSwap','NeuralTextures','all']
@@ -37,7 +37,7 @@ print_interval = 100
 save_interval = 5
 test_interval = 1
 finetune_interval = 2
-parallel = False
+parallel = True
 lamda = 0.01
 alpha = 1
 des = "train"

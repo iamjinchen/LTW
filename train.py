@@ -219,6 +219,7 @@ def updatebest(metrics,best_acc,best_loss,name,model,pnet):
 
 
 def main():
+    #TODO: save yaml config
     if os.path.exists(save_dir):
         shutil.rmtree(save_dir)
     print(f'save dir :{save_dir}')
@@ -244,7 +245,7 @@ def main():
     else:
         print('No fnet_model found, initializing random model.')
 
-    
+    #TODO: real parallel
     model = model.to(device)
     if parallel:
         model = nn.DataParallel(model)
@@ -265,7 +266,7 @@ def main():
 
 
 
-    _preproc = get_transform(input_size)['train']
+    _preproc = get_transform(input_size)['train']#image transformation
     df_train_dataset = FFpp(split='train', frame_nums=frame_nums, transform=_preproc,detect_name = detect_name,compress = compress,type = "Deepfakes",pair = True,original_path=ffpp_original_path,fake_path=ffpp_fake_path)
     f2f_train_dataset = FFpp(split='train', frame_nums=frame_nums, transform=_preproc,detect_name = detect_name,compress = compress,type = 'Face2Face',pair = True,original_path=ffpp_original_path,fake_path=ffpp_fake_path)
     fs_train_dataset = FFpp(split='train', frame_nums=frame_nums, transform=_preproc,detect_name = detect_name,compress = compress,type = 'FaceSwap',pair = True,original_path=ffpp_original_path,fake_path=ffpp_fake_path)

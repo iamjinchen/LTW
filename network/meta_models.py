@@ -8,7 +8,7 @@ from torch.autograd import Variable
 import math
 from .meta_efficientnet.meta import *
 import pdb
-import pretrainedmodels
+# import pretrainedmodels #not found
 import torchvision
 
 class MetaTranserModel(MetaModule):
