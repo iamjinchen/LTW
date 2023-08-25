@@ -63,6 +63,7 @@ class CeleDF(data.Dataset):
 
     def init(self):
         datas = []
+        path_list = []
 
         data_root = self.data_root
         with open(self.split_path,'r') as f:
@@ -70,13 +71,16 @@ class CeleDF(data.Dataset):
         test_list = [x.split(" ")[1] for x in self.raw_list]
         test_list = [data_root+'/'+x.split("/")[1][:-4] for x in test_list]
 
-      
+        # path_list.append(self.Deepfakes_path)
+        # path_list.append(self.original_path)
+        # path_list.append(self.youtube_path)
         self.fake_num = 0
         self.real_num = 0
         if self.train == False:
             
             for path in test_list:
-              
+                # folder_paths_all = glob.glob(path)
+                # folder_paths = np.setdiff1d(folder_paths_all,test_list)
                 label_str = path.split('/')[5]
                 
                 label = 1 if len(label_str) >13 else 0

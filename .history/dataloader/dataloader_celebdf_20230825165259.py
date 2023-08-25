@@ -63,6 +63,7 @@ class CeleDF(data.Dataset):
 
     def init(self):
         datas = []
+        path_list = []
 
         data_root = self.data_root
         with open(self.split_path,'r') as f:

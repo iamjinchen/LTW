@@ -30,7 +30,7 @@ class DFDCDetection(data.Dataset):
     def __getitem__(self, index):
         img_path, target, video_fn = self.datas[index]
 
-        img = Image.open(img_path)
+        img = Image.open(img_path[0])
         if self.transform is not None:
             img = self.transform(img)
 
@@ -64,23 +64,16 @@ class DFDCDetection(data.Dataset):
         data_root = self.root
         with open(self.split_path,'r') as f:
             self.raw_list = f.read().splitlines()
-        test_list = [x.split(" ")[0] for x in self.raw_list]
-        labels = [x.split(" ")[1] for x in self.raw_list]
-        test_list = [data_root+'/'+x  for x in test_list]
-        self.fake_num = 0
+          self.fake_num = 0
         self.real_num = 0
         if self.train == False:
             
-            for i,path in enumerate(test_list):
+            for path in test_list:
               
-                label_str = labels[i]
+                label_str = path.split('/')[5]
                 
-                if label_str == '1' :
-                    label = 1
-                elif label_str == '0' :
-                    label = 0
-                else:
-                    print("label error!")
+                label = 1 if len(label_str) >13 else 0
+                # for folder in folder_paths:
                 
                 face_paths = glob.glob(os.path.join(path, '*.png'))
 
@@ -100,39 +93,39 @@ class DFDCDetection(data.Dataset):
                     
 
                 datas.extend([[face_path, label, path] for face_path in face_paths])
-        # test_list = [x.split(" ")[1] for x in self.raw_list]
-        # test_list = [data_root+'/'+x.split("/")[1][:-4] for x in test_list]
-        # ## load dataset metadata
-        # metadata = pd.read_csv(os.path.join(self.root, 'metadata.csv'), low_memory=False)
-        # metadata = metadata.set_index('filename', drop=False)
-        # metadata = 
-        # ## filter out videos without images
-        # tmp = self.root + "/*/*"
-        # # video_paths = glob.glob(str(self.root/'*'/'*'))
-        # video_paths = glob.glob(tmp)
-        # vn = [os.path.basename(x) + '.mp4' for x in video_paths if len(os.listdir(x)) > 0]
-        # metadata = metadata.loc[vn]  
-        # ## random permutation
-        # metadata['label'] = metadata['label'].map({'FAKE': 1, 'REAL': 0})
-        # metadata = metadata[['filename', 'label', 'original', 'folder']]
-        # metadata = metadata.sample(frac=1, random_state=seed) 
+        test_list = [x.split(" ")[1] for x in self.raw_list]
+        test_list = [data_root+'/'+x.split("/")[1][:-4] for x in test_list]
+        ## load dataset metadata
+        metadata = pd.read_csv(os.path.join(self.root, 'metadata.csv'), low_memory=False)
+        metadata = metadata.set_index('filename', drop=False)
+        metadata = 
+        ## filter out videos without images
+        tmp = self.root + "/*/*"
+        # video_paths = glob.glob(str(self.root/'*'/'*'))
+        video_paths = glob.glob(tmp)
+        vn = [os.path.basename(x) + '.mp4' for x in video_paths if len(os.listdir(x)) > 0]
+        metadata = metadata.loc[vn]  
+        ## random permutation
+        metadata['label'] = metadata['label'].map({'FAKE': 1, 'REAL': 0})
+        metadata = metadata[['filename', 'label', 'original', 'folder']]
+        metadata = metadata.sample(frac=1, random_state=seed) 
 
-        # reals = metadata[metadata['original'].eq('NAN')].drop('original', axis=1)
+        reals = metadata[metadata['original'].eq('NAN')].drop('original', axis=1)
 
-        # fakes = metadata.drop(reals.filename).set_index('original')
-        # if self.train:
-        #     train_pos = reals[test_pos_size:] 
-        #     train_pos = train_pos[train_pos.filename.isin(fakes.index)] 
+        fakes = metadata.drop(reals.filename).set_index('original')
+        if self.train:
+            train_pos = reals[test_pos_size:] 
+            train_pos = train_pos[train_pos.filename.isin(fakes.index)] 
 
-        #     train_neg = fakes.loc[train_pos.filename]
-        #     datas = self._sampler_new(train_pos,train_neg)
-        # else:
-        #     test_pos = reals[:test_pos_size]
-        #     test_neg = fakes.loc[test_pos.filename].groupby(level=0, group_keys=False).apply(
-        #         lambda x: x.sample(1, random_state=seed))
-        #     test_datas = np.concatenate([test_pos.values, test_neg.values])
+            train_neg = fakes.loc[train_pos.filename]
+            datas = self._sampler_new(train_pos,train_neg)
+        else:
+            test_pos = reals[:test_pos_size]
+            test_neg = fakes.loc[test_pos.filename].groupby(level=0, group_keys=False).apply(
+                lambda x: x.sample(1, random_state=seed))
+            test_datas = np.concatenate([test_pos.values, test_neg.values])
 
-        #     datas = self._sampler(test_datas)
+            datas = self._sampler(test_datas)
         return datas
 
 

@@ -2,7 +2,7 @@ ffpp_original_path = "/data1/chenpeng/data/FaceForensics++/sample/faces_13/origi
 ffpp_fake_path = "/data1/chenpeng/data/FaceForensics++/sample/faces_13/manipulated_sequences"
 celebdf_path = "/data5/tjh/standard_crop/Celeb-DFv2"
 dfdc_path = "/data5/tjh/standard_crop/select_dfdc_test/videos"
-dfdc_data_list =  "/data5/tjh/standard_crop/dfdc_test.txt"
+dfdc_data_list =  /data5/tjh/standard_crop/dfdc_test.txt
 #celeb-df
 Deepfakes_path = f'{celebdf_path}'
 original_path = f'{celebdf_path}'

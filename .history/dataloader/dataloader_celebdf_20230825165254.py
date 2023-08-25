@@ -63,6 +63,7 @@ class CeleDF(data.Dataset):
 
     def init(self):
         datas = []
+        path_list = []
 
         data_root = self.data_root
         with open(self.split_path,'r') as f:
@@ -76,7 +77,8 @@ class CeleDF(data.Dataset):
         if self.train == False:
             
             for path in test_list:
-              
+                # folder_paths_all = glob.glob(path)
+                # folder_paths = np.setdiff1d(folder_paths_all,test_list)
                 label_str = path.split('/')[5]
                 
                 label = 1 if len(label_str) >13 else 0

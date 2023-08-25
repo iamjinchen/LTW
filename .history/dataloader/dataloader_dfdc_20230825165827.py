@@ -30,7 +30,7 @@ class DFDCDetection(data.Dataset):
     def __getitem__(self, index):
         img_path, target, video_fn = self.datas[index]
 
-        img = Image.open(img_path)
+        img = Image.open(img_path[0])
         if self.transform is not None:
             img = self.transform(img)
 
@@ -71,16 +71,11 @@ class DFDCDetection(data.Dataset):
         self.real_num = 0
         if self.train == False:
             
-            for i,path in enumerate(test_list):
+            for i,path in enumerate(test_list:
               
-                label_str = labels[i]
+                label_str = path.split('/')[5]
                 
-                if label_str == '1' :
-                    label = 1
-                elif label_str == '0' :
-                    label = 0
-                else:
-                    print("label error!")
+                label = 1 if len(label_str) >13 else 0
                 
                 face_paths = glob.glob(os.path.join(path, '*.png'))
 

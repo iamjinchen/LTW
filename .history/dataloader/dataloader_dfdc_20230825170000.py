@@ -30,7 +30,7 @@ class DFDCDetection(data.Dataset):
     def __getitem__(self, index):
         img_path, target, video_fn = self.datas[index]
 
-        img = Image.open(img_path)
+        img = Image.open(img_path[0])
         if self.transform is not None:
             img = self.transform(img)
 
