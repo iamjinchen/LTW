@@ -152,7 +152,7 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         
         start_time = time.time()
         # loss_add.backward()
-        accelerator.backward(loss_add)
+        accelerator.backward(loss)
         print(f"backward took {time.time()-start_time} seconds")
         # start_time = time.time()
         optimizer.step()
