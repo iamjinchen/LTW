@@ -18,7 +18,6 @@ split_path = '/data1/chenpeng/data/Celeb-DFv2/test.txt'
 DETERMINSTIC = True
 RNG_SEED = 20
 batch_size = 32 #128
-test_batch_size =32 
 frame_nums = 10
 dfdc_frame_nums = 1
 compress = 'c23'    #choose c23 or c40

@@ -182,14 +182,12 @@ def test(data_loader, model, device):
         label_list.extend(targets.cpu().numpy().tolist())
         output_list.extend(output.cpu().numpy().tolist())
         this_acces = (targets == prediction).cpu().numpy()
-        if i == 0 or len(this_acces) == len(acces[-1]) :
+        if len(this_acces) == len(acces[-1]) :
             acces.append((targets == prediction).cpu().numpy())
-        else:
-             print(f"{i} th acces is not appended.")
         loss = criterion(output, targets).item()
         losses += loss
     metrics = EasyDict()
-    metrics.acc = np.mean(acces)
+    metrics.acc = np.mean(acces)#TODO: deal with last acces
     eer,TPRs, auc,scaler = cal_metric(label_list,output_list,False)
 
     metrics.loss = losses / len(data_loader)
@@ -292,10 +290,10 @@ def main():
     dfdc_test_dataset = DFDCDetection(root = dfdc_path, train=False, frame_nums=dfdc_frame_nums, transform=_preproc,split_path=dfdc_data_list)
     df_test_dataloader = data.DataLoader(df_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8)
     f2f_test_dataloader = data.DataLoader(f2f_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8)
-    fs_test_dataloader = data.DataLoader(fs_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8)
-    nt_test_dataloader = data.DataLoader(nt_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8)
-    cele_test_dataloader = data.DataLoader(cele_test_dataset, batch_size=test_batch_size, shuffle=True, num_workers=8)
-    dfdc_test_dataloader = data.DataLoader(dfdc_test_dataset, batch_size=test_batch_size, shuffle=True, num_workers=8)
+    fs_test_dataloader = data.DataLoader(fs_test_dataset, batch_size=2, shuffle=False, num_workers=8)
+    nt_test_dataloader = data.DataLoader(nt_test_dataset, batch_size=2, shuffle=False, num_workers=8)
+    cele_test_dataloader = data.DataLoader(cele_test_dataset, batch_size=2, shuffle=True, num_workers=8)
+    dfdc_test_dataloader = data.DataLoader(dfdc_test_dataset, batch_size=2, shuffle=True, num_workers=8)
 
 
 
@@ -327,7 +325,7 @@ def main():
         print(f"train dataset is:{copydatalist[0].type},{copydatalist[1].type},meta dataset is:{meta_dataset.type}")
         train_dataloader = data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=8,worker_init_fn=worker_init_fn)
     
-        train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
+        # train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
         #train2(model,optimizer,train_dataloader,criterion,epoch,epoch_size,device,meta_dataloader=None)
 
         scheduler.step()
