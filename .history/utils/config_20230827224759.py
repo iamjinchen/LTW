@@ -37,7 +37,7 @@ real_weight = 1
 
 
 model_path ='/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_lastepoch.pth'#None#'/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train/efficientnet-b4_lastepoch.pth'
-fnet_path = '/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_pnet_lastepoch.pth'
+fnet_path = None #'/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_pnet_lastepoch.pth'
 
 beta1 = 0.9
 beta2 = 0.999
