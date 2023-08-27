@@ -242,11 +242,11 @@ def main():
     print(f'save dir :{save_dir}')
     sys.stdout = Logger(os.path.join(save_dir, 'train.log'))
 
-    # device = 'cuda' if torch.cuda.is_available else 'cpu'
-    device = accelerator.device
+    device = 'cuda' if torch.cuda.is_available else 'cpu'
+
     model = model_selection(model_name=model_name, num_classes=1)
 
-    fnet = FNet(model.num_ftrs).to(device)
+    fnet = FNet(model.num_ftrs)
 
     # save_checkpoint(model.state_dict(), fpath=f'{save_dir}/{model_name}_lastepoch.pth')
     # save_checkpoint(fnet.state_dict(), fpath=f'{save_dir}/{model_name}_pnet_lastepoch.pth')
@@ -258,7 +258,7 @@ def main():
     else:
         print('No fnet_model found, initializing random model.')
 
-    model = model.to(device)
+    # model = model
     if parallel:
         model = nn.DataParallel(model)
     

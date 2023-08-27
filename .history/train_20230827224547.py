@@ -246,7 +246,7 @@ def main():
     device = accelerator.device
     model = model_selection(model_name=model_name, num_classes=1)
 
-    fnet = FNet(model.num_ftrs).to(device)
+    fnet = FNet(model.num_ftrs).to()
 
     # save_checkpoint(model.state_dict(), fpath=f'{save_dir}/{model_name}_lastepoch.pth')
     # save_checkpoint(fnet.state_dict(), fpath=f'{save_dir}/{model_name}_pnet_lastepoch.pth')

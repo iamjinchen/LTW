@@ -84,7 +84,7 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
     for i, datas in enumerate(train_dataloader):
         
         images = datas[0]
-        targets = datas[1].float()
+        targets = datas[1].float().to(device)
         p = datas[3]
 
         meta_model = model_selection(model_name=model_name, num_classes=1,pretained = False)
@@ -121,15 +121,15 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
             except StopIteration:
                 meta_dataloader_iter = iter(meta_dataloader)
                 meta_datas = next(meta_dataloader_iter)
-            meta_images = meta_datas[0]
-            meta_targets = meta_datas[1].float()
+            meta_images = meta_datas[0].to(device)
+            meta_targets = meta_datas[1].float().to(device)
             meta_p = meta_datas[3]
         else:
             #use opposite image
-            opposite_images = datas[4]
+            opposite_images = datas[4].to(device)
             opposite_targets = (targets-1)*-1
             opposite_p = list(datas[5])
-            domain_images = datas[6]
+            domain_images = datas[6].to(device)
             domain_targets = targets
             domain_p = list(datas[7])
             meta_images = opposite_images
@@ -181,11 +181,11 @@ def test(data_loader, model, device):
     losses = 0.0
     label_list = []
     output_list = []
-    criterion = torch.nn.BCELoss()
+    criterion = torch.nn.BCELoss().to(device)
     wrongimg = []
     for i, datas in enumerate(tqdm(data_loader)):
-        images = datas[0]#3,3,224,224
-        targets = datas[1].float()
+        images = datas[0].to(device)#3,3,224,224
+        targets = datas[1].float().to(device)
         
         with torch.no_grad():
             prediction, output = model_forward(images, model)
@@ -242,8 +242,8 @@ def main():
     print(f'save dir :{save_dir}')
     sys.stdout = Logger(os.path.join(save_dir, 'train.log'))
 
-    # device = 'cuda' if torch.cuda.is_available else 'cpu'
-    device = accelerator.device
+    device = 'cuda' if torch.cuda.is_available else 'cpu'
+
     model = model_selection(model_name=model_name, num_classes=1)
 
     fnet = FNet(model.num_ftrs).to(device)
@@ -280,9 +280,8 @@ def main():
     scheduler = lr_scheduler.StepLR(optimizer, step_size=step_size, gamma=gamma)
     scheduler_fnet = lr_scheduler.StepLR(optimizer_fnet, step_size=step_size, gamma=gamma)
 
-    criterion = torch.nn.BCELoss()
-    criterion_oc = CompactLoss()
-    
+    criterion = torch.nn.BCELoss().to(device)
+    criterion_oc = CompactLoss().to(device)
 
 
 

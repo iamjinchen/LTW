@@ -1,5 +1,5 @@
 Loaded pretrained weights for efficientnet-b4
-resume model from /data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_pnet_lastepoch.pth
-resume model from /data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_lastepoch.pth
+No fnet_model found, initializing random model.
+No model found, initializing random model.
 train dataset is:FaceSwap,Deepfakes,meta dataset is:Face2Face
 meta lr = 0.001
