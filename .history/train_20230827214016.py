@@ -63,7 +63,7 @@ def model_forward(image, model, post_function=nn.Sigmoid(),feat = False):
         return prediction, output,feature
 
 
-def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,criterion_oc,epoch,epoch_size,device, accelerator,fnet_accelerator):
+def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,criterion_oc,epoch,epoch_size,device):
     '''
     train the LTW framework.
     '''
@@ -92,13 +92,12 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
             meta_model.copyModel(model.module)
         else:
             meta_model.copyModel(model)
-        # images, targets = accelerator.prepare(images, targets)
-        prediction, output, feature = model_forward(images,model,feat = True)
+        prediction, output,feature = model_forward(images,model,feat = True)
         compact_loss = criterion_oc(output,targets)
 
         cost = criterion(output, targets)
         cost_v = torch.reshape(cost, (len(cost), 1))
-        # feature = fnet_accelerator.prepare(feature)
+
         f_lambda = fnet(feature)
 
         f_lambda_norm = nn.Sigmoid()(f_lambda)
@@ -132,13 +131,14 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
             domain_images = datas[6].to(device)
             domain_targets = targets
             domain_p = list(datas[7])
+
+
             meta_images = opposite_images
             meta_targets = opposite_targets
-        # meta_images, meta_targets = accelerator.prepare(meta_images, meta_targets)
+        
         prediction_meta, output_mata = model_forward(meta_images,meta_model)
         l_g_meta = criterion_norm(output_mata, meta_targets)
         with torch.no_grad():
-            feature,w_new = fnet_accelerator.prepare(feature,w_new)
             w_new = fnet(feature)
             w_new_norm = nn.Sigmoid()(w_new)
 
@@ -148,14 +148,10 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         start_time = time.time()
         optimizer.zero_grad()
         optimizer_fnet.zero_grad()
-        accelerator.backward(loss_add)
-        # loss_add.backward()
+        loss_add.backward()
         optimizer.step()
-        print(f"model's step took {time.time()-start_time} seconds") #backward steps took 8.353310585021973 seconds
-        start_time = time.time()
         optimizer_fnet.step()     
-        print(f"fnet's step took {time.time()-start_time} seconds")
-        
+        print(f"backward steps took {time.time()-start_time} seconds") #backward steps took 8.353310585021973 seconds
         acc = (prediction==targets).float().mean()
         meta_acc = (prediction_meta==meta_targets).float().mean()
 
@@ -237,7 +233,6 @@ def main():
     print(f'save dir :{save_dir}')
     sys.stdout = Logger(os.path.join(save_dir, 'train.log'))
     accelerator = Accelerator()
-    fnet_accelerator = Accelerator()
     device = 'cuda' if torch.cuda.is_available else 'cpu'
     device = accelerator.device
     model = model_selection(model_name=model_name, num_classes=1)
@@ -307,8 +302,7 @@ def main():
     dfdc_test_dataloader = data.DataLoader(dfdc_test_dataset, batch_size=test_batch_size, shuffle=True, num_workers=8)
 
 
-    model, optimizer, scheduler = accelerator.prepare(model, optimizer, scheduler)
-    fnet, optimizer_fnet,scheduler_fnet = fnet_accelerator.prepare(model, optimizer_fnet,scheduler_fnet)
+
     model.train()
    
     best_acc = 0.
@@ -336,8 +330,8 @@ def main():
         epoch_size = len(train_dataset) //batch_size
         print(f"train dataset is:{copydatalist[0].type},{copydatalist[1].type},meta dataset is:{meta_dataset.type}")
         train_dataloader = data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=8,worker_init_fn=worker_init_fn)
-       
-        train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device,accelerator,fnet_accelerator)
+        model, optimizer, data = accelerator.prepare(model, optimizer, data)
+        train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
         #train2(model,optimizer,train_dataloader,criterion,epoch,epoch_size,device,meta_dataloader=None)
 
         scheduler.step()

@@ -92,7 +92,7 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
             meta_model.copyModel(model.module)
         else:
             meta_model.copyModel(model)
-        # images, targets = accelerator.prepare(images, targets)
+        images, targets = accelerator.prepare(images, targets)
         prediction, output, feature = model_forward(images,model,feat = True)
         compact_loss = criterion_oc(output,targets)
 

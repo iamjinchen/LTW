@@ -138,7 +138,7 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         prediction_meta, output_mata = model_forward(meta_images,meta_model)
         l_g_meta = criterion_norm(output_mata, meta_targets)
         with torch.no_grad():
-            feature,w_new = fnet_accelerator.prepare(feature,w_new)
+            # feature,w_new = fnet_accelerator.prepare(feature,w_new)
             w_new = fnet(feature)
             w_new_norm = nn.Sigmoid()(w_new)
 

@@ -92,8 +92,8 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
             meta_model.copyModel(model.module)
         else:
             meta_model.copyModel(model)
-        # images, targets = accelerator.prepare(images, targets)
-        prediction, output, feature = model_forward(images,model,feat = True)
+        images, target = accelerator.prepare(images, targets)
+        prediction, output,feature = model_forward(images,model,feat = True)
         compact_loss = criterion_oc(output,targets)
 
         cost = criterion(output, targets)
@@ -134,7 +134,7 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
             domain_p = list(datas[7])
             meta_images = opposite_images
             meta_targets = opposite_targets
-        # meta_images, meta_targets = accelerator.prepare(meta_images, meta_targets)
+        meta_images, meta_targets = accelerator.prepare(meta_images, meta_targets)
         prediction_meta, output_mata = model_forward(meta_images,meta_model)
         l_g_meta = criterion_norm(output_mata, meta_targets)
         with torch.no_grad():
