@@ -144,22 +144,19 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         loss = torch.sum(cost_v * (w_new_norm+1))/len(cost_v)
 
         loss_add = loss + alpha*l_g_meta + lamda*compact_loss
-        
+        start_time = time.time()
         optimizer.zero_grad()
         optimizer_fnet.zero_grad()
+        loss_add.backward()
+        optimizer.step()
+        print(f"model's step took {time.time()-start_time} seconds") #backward steps took 8.353310585021973 seconds
+        optimizer_fnet.step()     
+        print(f"backward steps took {time.time()-start_time} seconds") #backward steps took 8.353310585021973 seconds
+        optimizer.step()
         
         start_time = time.time()
-        loss_add.backward()
-        print(f"backward took {time.time()-start_time} seconds")
-        # start_time = time.time()
-        optimizer.step()
-        # print(f"model's step took {time.time()-start_time} seconds") #backward steps took 8.353310585021973 seconds
-            
-       
-        
-        # start_time = time.time()
         optimizer_fnet.step()     
-        # print(f"fnet's step took {time.time()-start_time} seconds")
+        print(f"fnet's step took {time.time()-start_time} seconds")
         acc = (prediction==targets).float().mean()
         meta_acc = (prediction_meta==meta_targets).float().mean()
 

@@ -153,13 +153,13 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         print(f"backward took {time.time()-start_time} seconds")
         # start_time = time.time()
         optimizer.step()
-        # print(f"model's step took {time.time()-start_time} seconds") #backward steps took 8.353310585021973 seconds
+        print(f"model's step took {time.time()-start_time} seconds") #backward steps took 8.353310585021973 seconds
             
        
         
-        # start_time = time.time()
+        start_time = time.time()
         optimizer_fnet.step()     
-        # print(f"fnet's step took {time.time()-start_time} seconds")
+        print(f"fnet's step took {time.time()-start_time} seconds")
         acc = (prediction==targets).float().mean()
         meta_acc = (prediction_meta==meta_targets).float().mean()
 

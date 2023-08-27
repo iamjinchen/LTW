@@ -159,7 +159,7 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         
         # start_time = time.time()
         optimizer_fnet.step()     
-        # print(f"fnet's step took {time.time()-start_time} seconds")
+        print(f"fnet's step took {time.time()-start_time} seconds")
         acc = (prediction==targets).float().mean()
         meta_acc = (prediction_meta==meta_targets).float().mean()
 
