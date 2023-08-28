@@ -191,6 +191,7 @@ def test(data_loader, model, device):
             prediction, output = model_forward(images, model)
         label_list.extend(targets.cpu().numpy().tolist())
         output_list.extend(output.cpu().numpy().tolist())
+        targets = targets.to(prediction, non_blocking=False, copy=False)
         this_acces = (targets == prediction).cpu().numpy()
         if i == 0 or len(this_acces) == len(acces[-1]) :
             acces.append((targets == prediction).cpu().numpy())
@@ -283,9 +284,6 @@ def main():
     criterion = torch.nn.BCELoss()
     criterion_oc = CompactLoss()
     
-
-
-
     _preproc = get_transform(input_size)['train']#image transformation
     df_train_dataset = FFpp(split='train', frame_nums=frame_nums, transform=_preproc,detect_name = detect_name,compress = compress,type = "Deepfakes",pair = True,original_path=ffpp_original_path,fake_path=ffpp_fake_path)
     f2f_train_dataset = FFpp(split='train', frame_nums=frame_nums, transform=_preproc,detect_name = detect_name,compress = compress,type = 'Face2Face',pair = True,original_path=ffpp_original_path,fake_path=ffpp_fake_path)
@@ -304,14 +302,12 @@ def main():
     fs_test_dataset = FFpp(split='test', frame_nums=frame_nums, transform=_preproc,detect_name = detect_name,compress = compress,type = 'FaceSwap',original_path=ffpp_original_path,fake_path=ffpp_fake_path)
     nt_test_dataset = FFpp(split='test', frame_nums=frame_nums, transform=_preproc,detect_name = detect_name,compress = compress,type = 'NeuralTextures',original_path=ffpp_original_path,fake_path=ffpp_fake_path)
     dfdc_test_dataset = DFDCDetection(root = dfdc_path, train=False, frame_nums=dfdc_frame_nums, transform=_preproc,split_path=dfdc_data_list)
-    df_test_dataloader = data.DataLoader(df_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8)
-    f2f_test_dataloader = data.DataLoader(f2f_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8)
-    fs_test_dataloader = data.DataLoader(fs_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8)
-    nt_test_dataloader = data.DataLoader(nt_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8)
-    cele_test_dataloader = data.DataLoader(cele_test_dataset, batch_size=test_batch_size, shuffle=True, num_workers=8)
-    dfdc_test_dataloader = data.DataLoader(dfdc_test_dataset, batch_size=test_batch_size, shuffle=True, num_workers=8)
-
-
+    df_test_dataloader = data.DataLoader(df_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8,pin_memory=True)
+    f2f_test_dataloader = data.DataLoader(f2f_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8,pin_memory=True)
+    fs_test_dataloader = data.DataLoader(fs_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8,pin_memory=True)
+    nt_test_dataloader = data.DataLoader(nt_test_dataset, batch_size=test_batch_size, shuffle=False, num_workers=8,pin_memory=True)
+    cele_test_dataloader = data.DataLoader(cele_test_dataset, batch_size=test_batch_size, shuffle=True, num_workers=8,pin_memory=True)
+    dfdc_test_dataloader = data.DataLoader(dfdc_test_dataset, batch_size=test_batch_size, shuffle=True, num_workers=8,pin_memory=True)
 
     model.train()
    
@@ -339,11 +335,11 @@ def main():
 
         epoch_size = len(train_dataset) //batch_size
         print(f"train dataset is:{copydatalist[0].type},{copydatalist[1].type},meta dataset is:{meta_dataset.type}")
-        train_dataloader = data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=8,worker_init_fn=worker_init_fn)
+        train_dataloader = data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=8,worker_init_fn=worker_init_fn,pin_memory=True)
         model, optimizer, train_dataloader, scheduler = accelerator.prepare(
          model, optimizer, train_dataloader, scheduler
      ) 
-        train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
+        # train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
         #train2(model,optimizer,train_dataloader,criterion,epoch,epoch_size,device,meta_dataloader=None)
 
         scheduler.step()

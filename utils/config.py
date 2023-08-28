@@ -7,6 +7,8 @@ world_size = 4 # gpus*nodes
 fp16  = True
 loss_scale = 0
 warm_up_ratio = 0.1
+accumulation_steps  = 8
+
 
 ffpp_original_path = "/data1/chenpeng/data/FaceForensics++/sample/faces_13/original_sequences/youtube"
 ffpp_fake_path = "/data1/chenpeng/data/FaceForensics++/sample/faces_13/manipulated_sequences"

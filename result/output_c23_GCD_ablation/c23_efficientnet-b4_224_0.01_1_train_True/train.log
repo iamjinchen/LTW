@@ -2,4 +2,22 @@ Loaded pretrained weights for efficientnet-b4
 resume model from /data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_pnet_lastepoch.pth
 resume model from /data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_lastepoch.pth
 train dataset is:FaceSwap,Deepfakes,meta dataset is:Face2Face
-meta lr = 0.001
+84 th acces is not appended.
+73 th acces is not appended.
+73 th acces is not appended.
+73 th acces is not appended.
+73 th acces is not appended.
+136 th acces is not appended.
+df acc:0.68998,loss:1.210,auc:0.956,eer:0.106
+f2f acc:0.574,loss:1.461,auc:0.584,eer:0.457
+fs acc:0.698,loss:1.190,auc:0.982,eer:0.065
+nt acc:0.510,loss:1.591,auc:0.502,eer:0.505
+avg acc:0.618,loss:1.363,auc:0.756,eer:0.283
+celedf acc:0.526,loss:1.413,auc:0.552,eer:0.453
+dfdc acc:0.608,loss:1.122,auc:0.649,eer:0.396
+all_avg acc:0.601,loss:1.331,auc:0.704,eer:0.330
+best_avg_acc:0.61824 (updated) best_avg_loss:1.36312 (updated)
+best_celedf_acc:0.52632 (updated) best_celedf_loss:1.41291 (updated)
+best_dfdc_acc:0.60840 (updated) best_dfdc_loss:1.12200 (updated)
+train dataset is:NeuralTextures,Deepfakes,meta dataset is:FaceSwap
+84 th acces is not appended.
