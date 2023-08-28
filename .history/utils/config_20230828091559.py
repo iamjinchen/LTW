@@ -60,4 +60,4 @@ parallel = True
 lamda = 0.01
 alpha = 1
 des = "train"
-save_dir = f"result/output_{compress}_GCD_ablation/{compress}_{model_name}_{input_size}_{lamda}_{alpha}_{des}_{fp16}_accum"
+save_dir = f"result/output_{compress}_GCD_ablation/{compress}_{model_name}_{input_size}_{lamda}_{alpha}_{des}_{fp16}_"

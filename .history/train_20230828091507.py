@@ -145,7 +145,6 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         
         loss_add = loss + alpha*l_g_meta + lamda*compact_loss
         loss_add = loss_add / accumulation_steps
-        
         optimizer.zero_grad()
         optimizer_fnet.zero_grad()
         
@@ -156,6 +155,7 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         # start_time = time.time()
         if (i+1)%accumulation_steps == 0:
             optimizer.step()
+      
             optimizer_fnet.step()     
         # print(f"fnet's step took {time.time()-start_time} seconds")
         acc = (prediction==targets).float().mean()
@@ -336,7 +336,7 @@ def main():
         model, optimizer, train_dataloader, scheduler = accelerator.prepare(
          model, optimizer, train_dataloader, scheduler
      ) 
-        train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
+        # train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
         #train2(model,optimizer,train_dataloader,criterion,epoch,epoch_size,device,meta_dataloader=None)
 
         scheduler.step()

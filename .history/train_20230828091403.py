@@ -144,8 +144,7 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         loss = torch.sum(cost_v * (w_new_norm+1))/len(cost_v)
         
         loss_add = loss + alpha*l_g_meta + lamda*compact_loss
-        loss_add = loss_add / accumulation_steps
-        
+        loss_add = loss_add / acc
         optimizer.zero_grad()
         optimizer_fnet.zero_grad()
         
@@ -154,9 +153,13 @@ def train(model,optimizer,fnet,optimizer_fnet,train_dataloader,meta_dataloader,c
         accelerator.backward(loss_add)
         print(f"backward took {time.time()-start_time} seconds")
         # start_time = time.time()
-        if (i+1)%accumulation_steps == 0:
-            optimizer.step()
-            optimizer_fnet.step()     
+        optimizer.step()
+        # print(f"model's step took {time.time()-start_time} seconds") #backward steps took 8.353310585021973 seconds
+            
+       
+        
+        # start_time = time.time()
+        optimizer_fnet.step()     
         # print(f"fnet's step took {time.time()-start_time} seconds")
         acc = (prediction==targets).float().mean()
         meta_acc = (prediction_meta==meta_targets).float().mean()
@@ -336,7 +339,7 @@ def main():
         model, optimizer, train_dataloader, scheduler = accelerator.prepare(
          model, optimizer, train_dataloader, scheduler
      ) 
-        train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
+        # train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
         #train2(model,optimizer,train_dataloader,criterion,epoch,epoch_size,device,meta_dataloader=None)
 
         scheduler.step()

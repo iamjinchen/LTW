@@ -336,7 +336,7 @@ def main():
         model, optimizer, train_dataloader, scheduler = accelerator.prepare(
          model, optimizer, train_dataloader, scheduler
      ) 
-        train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
+        # train(model,optimizer,fnet,optimizer_fnet,train_dataloader,None,criterion_oc,epoch,epoch_size,device)
         #train2(model,optimizer,train_dataloader,criterion,epoch,epoch_size,device,meta_dataloader=None)
 
         scheduler.step()
