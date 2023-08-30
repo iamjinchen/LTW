@@ -38,8 +38,8 @@ type_list_short = ['df','f2f','fs','nt','all']
 real_weight = 1
 
 
-model_path ='/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_lastepoch.pth'#None#'/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train/efficientnet-b4_lastepoch.pth'
-fnet_path = '/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_pnet_lastepoch.pth'
+model_path ='/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_True_7_epoch/efficientnet-b4_lastepoch.pth'#None#'/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train/efficientnet-b4_lastepoch.pth'
+fnet_path = '/data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_True_7_epoch/efficientnet-b4_pnet_lastepoch.pth'
 
 beta1 = 0.9
 beta2 = 0.999
@@ -60,4 +60,4 @@ parallel = True
 lamda = 0.01
 alpha = 1
 des = "train"
-save_dir = f"result/output_{compress}_GCD_ablation/{compress}_{model_name}_{input_size}_{lamda}_{alpha}_{des}_{fp16}_accum"
+save_dir = f"result/output_{compress}_GCD_ablation/{compress}_{model_name}_{input_size}_{lamda}_{alpha}_{des}_{fp16}_pretrain_8_epooch"

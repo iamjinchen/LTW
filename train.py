@@ -380,8 +380,8 @@ def main():
             #domain_best_acc,domain_best_loss = updatebest(metrics_list[test_index],domain_best_acc,domain_best_loss,"domain",model,pnet)
             celedf_best_acc,celedf_best_loss = updatebest(celedf_metrics,celedf_best_acc,celedf_best_loss,"celedf",model,fnet)
             dfdc_best_acc,dfdc_best_loss = updatebest(dfdc_metrics,dfdc_best_acc,dfdc_best_loss,"dfdc",model,fnet)
-            save_checkpoint(model.state_dict(), fpath=f'{save_dir}/{model_name}_lastepoch.pth')
-            save_checkpoint(fnet.state_dict(), fpath=f'{save_dir}/{model_name}_pnet_lastepoch.pth')
+            save_checkpoint(model.state_dict(), fpath=f'{save_dir}/{model_name}_{epoch}_epoch.pth')
+            save_checkpoint(fnet.state_dict(), fpath=f'{save_dir}/{model_name}_fnet_{epoch}_epoch.pth')
             
     print(f'save dir :{save_dir} done!!!')
 

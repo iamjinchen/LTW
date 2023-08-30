@@ -1,0 +1,412 @@
+Loaded pretrained weights for efficientnet-b4
+resume model from /data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_pnet_lastepoch.pth
+resume model from /data1/chenjin/LTW/result/output_c23_GCD_ablation/c23_efficientnet-b4_224_0.01_1_train_1_EPOCH/efficientnet-b4_lastepoch.pth
+train dataset is:FaceSwap,Deepfakes,meta dataset is:Face2Face
+backward took 17.149976015090942 seconds
+Mon Aug 28 10:19:45 2023 || Epoch:0 || Iter:0/757 || Loss:0.9208(0.9208) || Accuracy:0.7368(0.7368) || MetaAccuracy:0.5789(0.5789) || MetaLoss:1.1897(1.1897)
+Mon Aug 28 10:48:22 2023 || Epoch:0 || Iter:100/757 || Loss:0.2183(0.3502) || Accuracy:0.9474(0.9239) || MetaAccuracy:0.6053(0.6217) || MetaLoss:1.1162(1.2789)
+Mon Aug 28 11:17:03 2023 || Epoch:0 || Iter:200/757 || Loss:0.4475(0.3196) || Accuracy:0.8421(0.9245) || MetaAccuracy:0.6053(0.6024) || MetaLoss:0.9505(1.2720)
+Mon Aug 28 11:45:39 2023 || Epoch:0 || Iter:300/757 || Loss:0.2694(0.2819) || Accuracy:0.9474(0.9339) || MetaAccuracy:0.6842(0.6068) || MetaLoss:1.2513(1.3731)
+Mon Aug 28 12:14:18 2023 || Epoch:0 || Iter:400/757 || Loss:0.4696(0.2584) || Accuracy:0.8947(0.9395) || MetaAccuracy:0.6579(0.6157) || MetaLoss:1.1149(1.3787)
+Mon Aug 28 12:42:35 2023 || Epoch:0 || Iter:500/757 || Loss:0.0447(0.2353) || Accuracy:1.0000(0.9452) || MetaAccuracy:0.6579(0.6217) || MetaLoss:0.7445(1.3528)
+Mon Aug 28 13:10:31 2023 || Epoch:0 || Iter:600/757 || Loss:0.1788(0.2316) || Accuracy:0.9474(0.9458) || MetaAccuracy:0.7368(0.6284) || MetaLoss:1.3414(1.3560)
+Mon Aug 28 13:38:48 2023 || Epoch:0 || Iter:700/757 || Loss:0.2302(0.2241) || Accuracy:0.9737(0.9475) || MetaAccuracy:0.6842(0.6379) || MetaLoss:0.7398(1.3221)
+df acc:0.96972,loss:0.110,auc:0.992,eer:0.032
+f2f acc:0.584,loss:1.527,auc:0.780,eer:0.290
+fs acc:0.951,loss:0.163,auc:0.984,eer:0.049
+nt acc:0.597,loss:1.721,auc:0.723,eer:0.346
+avg acc:0.775,loss:0.881,auc:0.870,eer:0.179
+celedf acc:0.623,loss:1.760,auc:0.584,eer:0.431
+dfdc acc:0.557,loss:2.379,auc:0.688,eer:0.361
+all_avg acc:0.714,loss:1.277,auc:0.792,eer:0.251
+best_avg_acc:0.77541 (updated) best_avg_loss:0.88054 (updated)
+best_celedf_acc:0.62345 (updated) best_celedf_loss:1.76047 (updated)
+best_dfdc_acc:0.55702 (updated) best_dfdc_loss:2.37917 (updated)
+
+train dataset is:NeuralTextures,Deepfakes,meta dataset is:FaceSwap
+meta lr = 0.001
+Mon Aug 28 14:12:27 2023 || Epoch:1 || Iter:0/757 || Loss:1.2896(1.2896) || Accuracy:0.7368(0.7368) || MetaAccuracy:0.9211(0.9211) || MetaLoss:0.1307(0.1307)
+Mon Aug 28 14:41:01 2023 || Epoch:1 || Iter:100/757 || Loss:0.8802(0.9026) || Accuracy:0.6842(0.7613) || MetaAccuracy:0.6316(0.7840) || MetaLoss:0.8608(0.5755)
+Mon Aug 28 15:09:33 2023 || Epoch:1 || Iter:200/757 || Loss:0.4917(0.7417) || Accuracy:0.8684(0.7968) || MetaAccuracy:0.4737(0.6730) || MetaLoss:1.6501(0.8535)
+Mon Aug 28 15:38:02 2023 || Epoch:1 || Iter:300/757 || Loss:0.6289(0.6814) || Accuracy:0.8684(0.8188) || MetaAccuracy:0.5789(0.6292) || MetaLoss:1.2554(1.0963)
+Mon Aug 28 16:06:39 2023 || Epoch:1 || Iter:400/757 || Loss:0.3215(0.6301) || Accuracy:0.8947(0.8325) || MetaAccuracy:0.6053(0.6223) || MetaLoss:1.0099(1.1253)
+Mon Aug 28 16:35:13 2023 || Epoch:1 || Iter:500/757 || Loss:0.1385(0.5950) || Accuracy:0.9211(0.8415) || MetaAccuracy:0.7105(0.6261) || MetaLoss:1.1527(1.1355)
+Mon Aug 28 17:03:54 2023 || Epoch:1 || Iter:600/757 || Loss:0.4944(0.5911) || Accuracy:0.8158(0.8435) || MetaAccuracy:0.5789(0.6261) || MetaLoss:1.2146(1.1526)
+Mon Aug 28 17:32:43 2023 || Epoch:1 || Iter:700/757 || Loss:0.4965(0.6145) || Accuracy:0.7895(0.8355) || MetaAccuracy:0.3421(0.6077) || MetaLoss:1.2983(1.1831)
+df acc:0.83670,loss:0.428,auc:0.967,eer:0.091
+f2f acc:0.642,loss:0.880,auc:0.698,eer:0.353
+fs acc:0.536,loss:1.315,auc:0.561,eer:0.458
+nt acc:0.796,loss:0.524,auc:0.893,eer:0.184
+avg acc:0.703,loss:0.787,auc:0.780,eer:0.271
+celedf acc:0.493,loss:1.366,auc:0.544,eer:0.476
+dfdc acc:0.613,loss:1.012,auc:0.654,eer:0.391
+all_avg acc:0.653,loss:0.921,auc:0.719,eer:0.325
+best_avg_acc:0.77541 
+best_avg_loss:0.78677 (updated)
+best_celedf_acc:0.62345 
+best_celedf_loss:1.36591 (updated)
+best_dfdc_acc:0.61310 (updated) best_dfdc_loss:1.01246 (updated)
+
+train dataset is:Face2Face,FaceSwap,meta dataset is:NeuralTextures
+meta lr = 0.001
+Mon Aug 28 18:24:06 2023 || Epoch:2 || Iter:0/757 || Loss:1.5531(1.5531) || Accuracy:0.5789(0.5789) || MetaAccuracy:0.8684(0.8684) || MetaLoss:0.2600(0.2600)
+Mon Aug 28 18:52:14 2023 || Epoch:2 || Iter:100/757 || Loss:0.7368(0.9566) || Accuracy:0.8158(0.7215) || MetaAccuracy:0.8421(0.7710) || MetaLoss:0.4724(0.4924)
+Mon Aug 28 19:21:13 2023 || Epoch:2 || Iter:200/757 || Loss:0.4469(0.7688) || Accuracy:0.8684(0.7794) || MetaAccuracy:0.5263(0.7103) || MetaLoss:1.6037(0.6440)
+Mon Aug 28 19:50:07 2023 || Epoch:2 || Iter:300/757 || Loss:0.2549(0.6328) || Accuracy:0.9474(0.8225) || MetaAccuracy:0.5263(0.6874) || MetaLoss:1.6162(0.8044)
+Mon Aug 28 20:19:12 2023 || Epoch:2 || Iter:400/757 || Loss:0.3026(0.5767) || Accuracy:0.8947(0.8410) || MetaAccuracy:0.3947(0.6527) || MetaLoss:1.9987(1.0175)
+Mon Aug 28 20:48:07 2023 || Epoch:2 || Iter:500/757 || Loss:0.0901(0.5443) || Accuracy:1.0000(0.8488) || MetaAccuracy:0.6316(0.6314) || MetaLoss:1.5603(1.1789)
+Mon Aug 28 21:16:59 2023 || Epoch:2 || Iter:600/757 || Loss:0.4210(0.5062) || Accuracy:0.9474(0.8606) || MetaAccuracy:0.5263(0.6191) || MetaLoss:1.7687(1.2908)
+Mon Aug 28 21:45:40 2023 || Epoch:2 || Iter:700/757 || Loss:0.4733(0.4768) || Accuracy:0.8684(0.8704) || MetaAccuracy:0.6316(0.6160) || MetaLoss:1.0746(1.3555)
+df acc:0.67664,loss:1.325,auc:0.725,eer:0.336
+f2f acc:0.765,loss:1.119,auc:0.930,eer:0.145
+fs acc:0.776,loss:1.081,auc:0.987,eer:0.049
+nt acc:0.456,loss:2.060,auc:0.462,eer:0.536
+avg acc:0.669,loss:1.396,auc:0.776,eer:0.267
+celedf acc:0.626,loss:1.700,auc:0.498,eer:0.500
+dfdc acc:0.504,loss:2.246,auc:0.550,eer:0.465
+all_avg acc:0.634,loss:1.589,auc:0.692,eer:0.339
+best_avg_acc:0.77541 
+best_avg_loss:0.78677 
+best_celedf_acc:0.62597 (updated) best_celedf_loss:1.36591 
+best_dfdc_acc:0.61310 
+best_dfdc_loss:1.01246 
+
+train dataset is:NeuralTextures,Deepfakes,meta dataset is:FaceSwap
+meta lr = 0.001
+Mon Aug 28 22:24:31 2023 || Epoch:3 || Iter:0/757 || Loss:3.6018(3.6018) || Accuracy:0.4211(0.4211) || MetaAccuracy:1.0000(1.0000) || MetaLoss:0.0382(0.0382)
+Mon Aug 28 22:53:12 2023 || Epoch:3 || Iter:100/757 || Loss:0.6116(0.9499) || Accuracy:0.8684(0.7848) || MetaAccuracy:0.4474(0.8046) || MetaLoss:1.8061(0.5228)
+Mon Aug 28 23:21:53 2023 || Epoch:3 || Iter:200/757 || Loss:1.0193(0.7384) || Accuracy:0.7105(0.8166) || MetaAccuracy:0.4737(0.6510) || MetaLoss:1.5331(1.1099)
+Mon Aug 28 23:50:33 2023 || Epoch:3 || Iter:300/757 || Loss:0.2367(0.6513) || Accuracy:0.9737(0.8350) || MetaAccuracy:0.3947(0.5854) || MetaLoss:2.0120(1.3206)
+Tue Aug 29 00:19:22 2023 || Epoch:3 || Iter:400/757 || Loss:0.6244(0.5741) || Accuracy:0.8947(0.8539) || MetaAccuracy:0.5000(0.5701) || MetaLoss:1.3798(1.3293)
+Tue Aug 29 00:48:23 2023 || Epoch:3 || Iter:500/757 || Loss:0.2812(0.5640) || Accuracy:0.9211(0.8572) || MetaAccuracy:0.5789(0.5669) || MetaLoss:3.5537(1.3711)
+Tue Aug 29 01:17:21 2023 || Epoch:3 || Iter:600/757 || Loss:0.3295(0.5315) || Accuracy:0.8947(0.8644) || MetaAccuracy:0.6053(0.5749) || MetaLoss:1.3985(1.3217)
+Tue Aug 29 01:45:41 2023 || Epoch:3 || Iter:700/757 || Loss:0.2767(0.5044) || Accuracy:0.9211(0.8713) || MetaAccuracy:0.7105(0.5813) || MetaLoss:1.0590(1.2954)
+
+df acc:0.91312,loss:0.234,auc:0.987,eer:0.058
+f2f acc:0.711,loss:0.699,auc:0.825,eer:0.252
+fs acc:0.534,loss:1.461,auc:0.609,eer:0.421
+nt acc:0.873,loss:0.343,auc:0.949,eer:0.120
+avg acc:0.758,loss:0.684,auc:0.842,eer:0.213
+celedf acc:0.527,loss:1.303,auc:0.566,eer:0.454
+dfdc acc:0.647,loss:0.847,auc:0.704,eer:0.349
+all_avg acc:0.701,loss:0.815,auc:0.773,eer:0.276
+best_avg_acc:0.77541 
+best_avg_loss:0.68433 (updated)
+best_celedf_acc:0.62597 
+best_celedf_loss:1.30300 (updated)
+best_dfdc_acc:0.64724 (updated) best_dfdc_loss:0.84729 (updated)
+
+train dataset is:FaceSwap,Deepfakes,meta dataset is:NeuralTextures
+meta lr = 0.001
+Tue Aug 29 02:20:06 2023 || Epoch:4 || Iter:0/757 || Loss:1.7251(1.7251) || Accuracy:0.6842(0.6842) || MetaAccuracy:0.8158(0.8158) || MetaLoss:0.6581(0.6581)
+Tue Aug 29 02:48:27 2023 || Epoch:4 || Iter:100/757 || Loss:0.2295(0.6639) || Accuracy:0.9737(0.8312) || MetaAccuracy:0.6579(0.8241) || MetaLoss:0.6455(0.3947)
+Tue Aug 29 03:17:12 2023 || Epoch:4 || Iter:200/757 || Loss:0.2052(0.4996) || Accuracy:0.9211(0.8700) || MetaAccuracy:0.6316(0.7670) || MetaLoss:0.8637(0.5395)
+Tue Aug 29 03:45:57 2023 || Epoch:4 || Iter:300/757 || Loss:0.1380(0.4061) || Accuracy:1.0000(0.8952) || MetaAccuracy:0.7895(0.7391) || MetaLoss:0.8001(0.6431)
+Tue Aug 29 04:14:42 2023 || Epoch:4 || Iter:400/757 || Loss:0.0297(0.3467) || Accuracy:1.0000(0.9108) || MetaAccuracy:0.6579(0.7335) || MetaLoss:1.3552(0.6852)
+Tue Aug 29 04:42:44 2023 || Epoch:4 || Iter:500/757 || Loss:0.1606(0.3098) || Accuracy:0.9737(0.9216) || MetaAccuracy:0.6579(0.7318) || MetaLoss:1.0179(0.7273)
+Tue Aug 29 05:11:27 2023 || Epoch:4 || Iter:600/757 || Loss:0.0997(0.2885) || Accuracy:0.9737(0.9274) || MetaAccuracy:0.8421(0.7322) || MetaLoss:0.3840(0.7460)
+Tue Aug 29 05:40:10 2023 || Epoch:4 || Iter:700/757 || Loss:0.4278(0.2777) || Accuracy:0.9474(0.9307) || MetaAccuracy:0.7105(0.7236) || MetaLoss:0.9070(0.7989)
+df acc:0.89510,loss:0.337,auc:0.970,eer:0.083
+f2f acc:0.698,loss:0.923,auc:0.790,eer:0.278
+fs acc:0.915,loss:0.282,auc:0.990,eer:0.045
+nt acc:0.659,loss:1.178,auc:0.736,eer:0.327
+avg acc:0.792,loss:0.680,auc:0.871,eer:0.183
+celedf acc:0.588,loss:1.371,auc:0.578,eer:0.442
+dfdc acc:0.597,loss:1.615,auc:0.675,eer:0.363
+all_avg acc:0.725,loss:0.951,auc:0.790,eer:0.256
+best_avg_acc:0.79164 (updated) best_avg_loss:0.67992 (updated)
+best_celedf_acc:0.62597 
+best_celedf_loss:1.30300 
+best_dfdc_acc:0.64724 
+best_dfdc_loss:0.84729 
+
+train dataset is:Deepfakes,Face2Face,meta dataset is:NeuralTextures
+meta lr = 0.0001
+backward took 15.92733645439148 seconds
+Tue Aug 29 06:05:18 2023 || Epoch:5 || Iter:0/757 || Loss:0.4080(0.4080) || Accuracy:0.8684(0.8684) || MetaAccuracy:0.6316(0.6316) || MetaLoss:1.0763(1.0763)
+Tue Aug 29 06:33:51 2023 || Epoch:5 || Iter:100/757 || Loss:0.2218(0.8074) || Accuracy:0.9474(0.8288) || MetaAccuracy:0.7895(0.7113) || MetaLoss:0.6623(1.0145)
+Tue Aug 29 07:01:55 2023 || Epoch:5 || Iter:200/757 || Loss:0.2291(0.6165) || Accuracy:0.9211(0.8650) || MetaAccuracy:0.8158(0.7337) || MetaLoss:0.7127(0.8782)
+Tue Aug 29 07:30:37 2023 || Epoch:5 || Iter:300/757 || Loss:0.3563(0.5276) || Accuracy:0.8947(0.8818) || MetaAccuracy:0.8684(0.7573) || MetaLoss:0.2879(0.7731)
+backward took 16.51705527305603 seconds
+backward took 16.398034811019897 seconds
+backward took 16.45876145362854 seconds
+backward took 15.99580192565918 seconds
+backward took 15.994316577911377 seconds
+backward took 15.9705810546875 seconds
+backward took 16.03736400604248 seconds
+backward took 16.290017127990723 seconds
+backward took 16.610517740249634 seconds
+backward took 16.467103242874146 seconds
+backward took 16.30249547958374 seconds
+backward took 16.253787755966187 seconds
+backward took 16.499545097351074 seconds
+backward took 16.352002382278442 seconds
+backward took 16.346378087997437 seconds
+backward took 16.339508056640625 seconds
+backward took 16.412035942077637 seconds
+backward took 16.250940084457397 seconds
+backward took 16.38892102241516 seconds
+backward took 16.297165393829346 seconds
+backward took 16.097228527069092 seconds
+backward took 15.931904315948486 seconds
+backward took 15.934411525726318 seconds
+backward took 15.976502418518066 seconds
+backward took 16.080519676208496 seconds
+backward took 16.20223093032837 seconds
+backward took 16.230435371398926 seconds
+backward took 16.25975203514099 seconds
+backward took 16.423577547073364 seconds
+backward took 16.442151308059692 seconds
+backward took 16.32423996925354 seconds
+backward took 16.49474334716797 seconds
+backward took 16.45893406867981 seconds
+backward took 16.553093194961548 seconds
+backward took 16.377599239349365 seconds
+backward took 16.414013862609863 seconds
+backward took 16.37710428237915 seconds
+backward took 16.38504719734192 seconds
+backward took 16.108047008514404 seconds
+backward took 15.95117449760437 seconds
+backward took 16.040858507156372 seconds
+backward took 15.983640432357788 seconds
+backward took 15.948172092437744 seconds
+backward took 16.503011465072632 seconds
+backward took 16.628312349319458 seconds
+backward took 16.532942533493042 seconds
+backward took 16.40284490585327 seconds
+backward took 16.40500259399414 seconds
+backward took 16.585115909576416 seconds
+backward took 16.56047773361206 seconds
+backward took 16.461573600769043 seconds
+backward took 16.631975173950195 seconds
+backward took 16.573009252548218 seconds
+backward took 16.446667194366455 seconds
+backward took 16.44612407684326 seconds
+backward took 16.18563938140869 seconds
+backward took 15.968477725982666 seconds
+backward took 16.046226501464844 seconds
+backward took 16.0639488697052 seconds
+backward took 15.999405860900879 seconds
+backward took 16.306355953216553 seconds
+backward took 16.18346071243286 seconds
+backward took 16.255640029907227 seconds
+backward took 16.4872567653656 seconds
+backward took 16.52362084388733 seconds
+backward took 16.309874057769775 seconds
+backward took 16.405742645263672 seconds
+backward took 16.31366229057312 seconds
+backward took 16.643885374069214 seconds
+backward took 16.38429617881775 seconds
+backward took 16.57712411880493 seconds
+backward took 16.56292152404785 seconds
+backward took 16.28674054145813 seconds
+backward took 16.113967895507812 seconds
+backward took 15.980192184448242 seconds
+backward took 15.94903016090393 seconds
+backward took 15.940976619720459 seconds
+backward took 15.940848350524902 seconds
+backward took 16.37130856513977 seconds
+backward took 16.654439210891724 seconds
+backward took 16.681225538253784 seconds
+backward took 16.326926469802856 seconds
+backward took 16.198660373687744 seconds
+backward took 16.257570505142212 seconds
+backward took 16.330360174179077 seconds
+backward took 16.426414489746094 seconds
+backward took 16.280906677246094 seconds
+backward took 16.521695852279663 seconds
+backward took 16.535327911376953 seconds
+backward took 16.488348960876465 seconds
+backward took 16.453728437423706 seconds
+backward took 15.916632175445557 seconds
+backward took 15.932087421417236 seconds
+backward took 15.974945068359375 seconds
+backward took 15.975780963897705 seconds
+backward took 16.52652335166931 seconds
+backward took 16.524916648864746 seconds
+backward took 16.43992304801941 seconds
+backward took 16.316094636917114 seconds
+backward took 16.47126603126526 seconds
+Tue Aug 29 07:59:15 2023 || Epoch:5 || Iter:400/757 || Loss:0.1901(0.4646) || Accuracy:0.9474(0.8939) || MetaAccuracy:0.7368(0.7691) || MetaLoss:0.7596(0.7206)
+backward took 16.45166015625 seconds
+backward took 16.349703073501587 seconds
+backward took 16.433289766311646 seconds
+backward took 16.47394609451294 seconds
+backward took 16.412084817886353 seconds
+backward took 16.285658836364746 seconds
+backward took 16.46098756790161 seconds
+backward took 16.44000244140625 seconds
+backward took 16.248648643493652 seconds
+backward took 15.906282424926758 seconds
+backward took 15.937742710113525 seconds
+backward took 15.981276512145996 seconds
+backward took 16.00828266143799 seconds
+backward took 16.34228014945984 seconds
+backward took 16.176308631896973 seconds
+backward took 16.40596342086792 seconds
+backward took 16.377018451690674 seconds
+backward took 16.56108570098877 seconds
+backward took 16.50250792503357 seconds
+backward took 16.316015481948853 seconds
+backward took 16.23165774345398 seconds
+backward took 16.48055124282837 seconds
+backward took 16.48533034324646 seconds
+backward took 16.30270218849182 seconds
+backward took 16.501524448394775 seconds
+backward took 16.366219520568848 seconds
+backward took 16.00945806503296 seconds
+backward took 15.986448764801025 seconds
+backward took 15.995342254638672 seconds
+backward took 15.939691305160522 seconds
+backward took 15.977330207824707 seconds
+backward took 16.54489755630493 seconds
+backward took 16.503559350967407 seconds
+backward took 16.447810411453247 seconds
+backward took 16.258054733276367 seconds
+backward took 16.354729175567627 seconds
+backward took 16.54330277442932 seconds
+backward took 16.568718194961548 seconds
+backward took 16.269421100616455 seconds
+backward took 16.452799558639526 seconds
+backward took 16.338451385498047 seconds
+backward took 16.560256004333496 seconds
+backward took 16.224104166030884 seconds
+backward took 16.25776767730713 seconds
+backward took 15.953209161758423 seconds
+backward took 15.953559875488281 seconds
+backward took 16.072330713272095 seconds
+backward took 15.961198806762695 seconds
+backward took 16.25826930999756 seconds
+backward took 16.18950343132019 seconds
+backward took 16.215091466903687 seconds
+backward took 16.634182453155518 seconds
+backward took 16.64273691177368 seconds
+backward took 16.444135904312134 seconds
+backward took 16.380191802978516 seconds
+backward took 16.256702423095703 seconds
+backward took 16.55684471130371 seconds
+backward took 16.547933101654053 seconds
+backward took 16.624892234802246 seconds
+backward took 16.51871657371521 seconds
+backward took 16.623992681503296 seconds
+backward took 16.03408432006836 seconds
+backward took 15.954705953598022 seconds
+backward took 15.925119876861572 seconds
+backward took 16.102896451950073 seconds
+backward took 16.1730215549469 seconds
+backward took 16.52796506881714 seconds
+backward took 16.524801015853882 seconds
+backward took 16.370874404907227 seconds
+backward took 16.421432495117188 seconds
+backward took 16.619250535964966 seconds
+backward took 16.361531019210815 seconds
+backward took 16.473379373550415 seconds
+backward took 16.309050798416138 seconds
+backward took 16.50448441505432 seconds
+backward took 16.38946032524109 seconds
+backward took 16.44049620628357 seconds
+backward took 16.53140616416931 seconds
+backward took 16.22692346572876 seconds
+backward took 15.964740753173828 seconds
+backward took 15.966747760772705 seconds
+backward took 15.966440677642822 seconds
+backward took 15.978419065475464 seconds
+backward took 16.47884750366211 seconds
+backward took 16.45615005493164 seconds
+backward took 16.377206087112427 seconds
+backward took 16.62144708633423 seconds
+backward took 16.581191778182983 seconds
+backward took 16.404266834259033 seconds
+backward took 16.49808692932129 seconds
+backward took 16.28880548477173 seconds
+backward took 16.25092577934265 seconds
+backward took 16.723548650741577 seconds
+backward took 16.25022292137146 seconds
+backward took 16.54020619392395 seconds
+backward took 16.49403953552246 seconds
+backward took 16.105597496032715 seconds
+backward took 15.90718150138855 seconds
+backward took 15.957338094711304 seconds
+backward took 15.987445831298828 seconds
+Tue Aug 29 08:27:54 2023 || Epoch:5 || Iter:500/757 || Loss:0.2469(0.4194) || Accuracy:0.9211(0.9035) || MetaAccuracy:0.6842(0.7782) || MetaLoss:0.8689(0.6783)
+backward took 15.986016035079956 seconds
+backward took 16.388771057128906 seconds
+backward took 16.587152242660522 seconds
+backward took 16.57339596748352 seconds
+backward took 16.389084100723267 seconds
+backward took 16.391590118408203 seconds
+backward took 16.347554683685303 seconds
+backward took 16.503806114196777 seconds
+backward took 16.41945743560791 seconds
+backward took 16.395467519760132 seconds
+backward took 16.373907566070557 seconds
+backward took 16.39339256286621 seconds
+backward took 16.56056833267212 seconds
+backward took 16.141473531723022 seconds
+backward took 15.987334489822388 seconds
+backward took 15.971920490264893 seconds
+backward took 15.938457489013672 seconds
+backward took 15.962602138519287 seconds
+backward took 16.486286163330078 seconds
+backward took 16.62232756614685 seconds
+backward took 16.441786527633667 seconds
+backward took 16.28188133239746 seconds
+backward took 16.43632936477661 seconds
+backward took 16.631993770599365 seconds
+backward took 16.281493663787842 seconds
+backward took 16.479896306991577 seconds
+backward took 16.478423833847046 seconds
+backward took 16.321204662322998 seconds
+backward took 16.272665977478027 seconds
+backward took 16.46683406829834 seconds
+backward took 16.16654944419861 seconds
+backward took 16.04851245880127 seconds
+backward took 15.960148811340332 seconds
+backward took 15.992599964141846 seconds
+backward took 15.927262783050537 seconds
+backward took 16.008002519607544 seconds
+backward took 16.21074891090393 seconds
+backward took 15.983689785003662 seconds
+backward took 15.957663297653198 seconds
+backward took 15.94363808631897 seconds
+backward took 15.985993146896362 seconds
+backward took 15.954161167144775 seconds
+backward took 15.982963800430298 seconds
+backward took 16.06059765815735 seconds
+backward took 15.913670539855957 seconds
+backward took 15.919883489608765 seconds
+backward took 16.013940572738647 seconds
+backward took 16.079193592071533 seconds
+backward took 16.15891671180725 seconds
+backward took 15.96330714225769 seconds
+backward took 15.970616817474365 seconds
+backward took 16.010865926742554 seconds
+backward took 15.961204290390015 seconds
+backward took 15.972763776779175 seconds
+backward took 16.105374336242676 seconds
+backward took 16.008439540863037 seconds
+backward took 16.317980766296387 seconds
+backward took 16.14522671699524 seconds
+backward took 16.172565937042236 seconds
+backward took 15.952797412872314 seconds
+backward took 15.97614860534668 seconds
+backward took 15.991239070892334 seconds
+backward took 16.16754961013794 seconds
+backward took 16.07118844985962 seconds
+backward took 16.05347514152527 seconds
+backward took 15.9725661277771 seconds
+backward took 15.999031782150269 seconds
+backward took 16.01567769050598 seconds
+backward took 16.13535499572754 seconds
+backward took 16.000248670578003 seconds
+backward took 15.9414803981781 seconds
+backward took 15.960374116897583 seconds
+backward took 16.04835271835327 seconds
+backward took 15.995306730270386 seconds
+backward took 15.98194146156311 seconds
+backward took 15.94778847694397 seconds
+backward took 16.070645093917847 seconds
+backward took 15.897249937057495 seconds
+backward took 16.116961240768433 seconds
+backward took 16.185686826705933 seconds
+backward took 16.078701496124268 seconds
